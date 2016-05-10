@@ -2,8 +2,16 @@
 * @Author: Yuk
 * @Date:   2016-05-04 18:19:10
 * @Last Modified by:   Yuk
-* @Last Modified time: 2016-05-07 23:25:01
+* @Last Modified time: 2016-05-10 11:32:10
 */
+
+@font-face {
+  font-family: 'icons-turn-arrow';
+  src: url('../fonts/icons/turn-arrow.eot');
+  src: url('../fonts/icons/turn-arrow.eot') format('embedded-opentype'), url('../fonts/icons/turn-arrow.ttf') format('truetype'), url('../fonts/icons/turn-arrow.woff') format('woff'), url('../fonts/icons/turn-arrow.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 
 html,
 body {
@@ -84,4 +92,40 @@ body {
   left: 0;
   width: 100%;
   text-align: center;
+  @at-root {
+    .controller-unit {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      margin-left: 5px;
+      text-align: center;
+      cursor: pointer;
+      background-color: #aaa;
+      border-radius: 50%;
+      transform: scale(.5);
+      transition: transform .6s, color .6s;
+      vertical-align:middle;
+      &.is-center {
+        transform: scale(1);
+        background-color: #888;
+        // 字体
+        &::after{
+          font-family:"icons-turn-arrow";
+          content:"\e600";
+          line-height: 30px;
+          font-size: 80%;
+          color: #fff;
+          // 灰阶渲染 控制字体轮廓亮度
+          // 亚像素渲染 rgb亚像素混合；更好；耗CPU更多；
+          // 开启灰阶平滑;适用字体浅色；背景深色；
+          -webkit-font-smoothing:antialiased; 
+          -moz-osx-font-smoothing:grayscale;
+        }
+        // 翻转
+        &.is-inverse{
+          transform:rotateY(180deg);
+        }
+      }
+    }
+  }
 }
